@@ -1,0 +1,13 @@
+# config for the server
+debian/settings.js /etc/mediawiki/parsoid/
+
+# main source
+src/ usr/lib/parsoid/
+
+# node modules
+node_modules/ usr/lib/parsoid/
+package.json usr/lib/parsoid/
+
+# include all git stuff
+# TODO: do this only in a parsoid-dev package?
+#.git* usr/lib/parsoid/

@@ -1,0 +1,9 @@
+/var/log/parsoid/parsoid.log {
+    daily
+    copytruncate
+    missingok
+    compress
+    notifempty
+    rotate 15
+    size 256M
+}

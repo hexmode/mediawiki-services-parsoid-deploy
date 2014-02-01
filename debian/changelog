@@ -1,0 +1,35 @@
+parsoid (0.1.5) wmf-production; urgency=medium
+
+  * Removed unnecessary export in upstart config
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Tue, 11 Feb 2014 15:43:38 -0800
+
+parsoid (0.1.4) wmf-production; urgency=medium
+
+  * Set correct owner on log dir after user creation
+  * Fix port and interface handling on Ubuntu
+  * Rename port/interface env vars to just PORT and INTERFACE
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Tue, 11 Feb 2014 13:38:54 -0800
+
+parsoid (0.1.3) wmf-production; urgency=low
+
+  * Include git repository in the package
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 31 Jan 2014 17:32:43 -0800
+parsoid (0.1.2) wmf-production; urgency=low
+
+  * Bump version again after adding a postrm file that handles purge better.
+    - remove the parsoid user, /var/run/parsoid and /var/log/parsoid
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 31 Jan 2014 17:32:43 -0800
+parsoid (0.1.1) wmf-production; urgency=low
+
+  * Bump version for repo test.
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 31 Jan 2014 17:32:43 -0800
+parsoid (0.1) wmf-production; urgency=low
+
+  * Initial Release.
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 31 Jan 2014 17:32:43 -0800

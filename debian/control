@@ -1,0 +1,17 @@
+Source: parsoid
+Section: web
+Priority: optional
+Maintainer: Gabriel Wicke <gwicke@wikimedia.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: http://www.mediawiki.org/wiki/Parsoid
+Vcs-Git: https://gerrit.wikimedia.org/r/mediawiki/services/parsoid/deploy
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/parsoid.git;a=summary
+
+Package: parsoid
+# we only package amd64 for now
+Architecture: amd64
+Depends: nodejs (>=0.8.0), logrotate, adduser, ${shlibs:Depends}, ${misc:Depends}
+Enhances: mediawiki
+Description: Web service converting HTML+RDFa to MediaWiki wikitext and back
+ Bidirectional conversion between HTML+RDFa and the MediaWiki flavor of wikitext in a node.js web service. See https://www.mediawiki.org/wiki/Parsoid.
