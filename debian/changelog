@@ -1,3 +1,26 @@
+parsoid (0.1.8) wmf-production; urgency=medium
+
+  * up ulimit in init script
+  * mention port in startup message
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Tue, 18 Feb 2014 13:07:18 -0800
+
+parsoid (0.1.7) wmf-production; urgency=medium
+
+  * Removed upstart config to avoid duplicate work and precedence issues.
+    Ubuntu will switch to systemd in the longer term anyway.
+  * Added hack in init script to make output redirection work on Ubuntu 12.04
+    LTS; also fixes ownership of log files
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Tue, 18 Feb 2014 12:46:44 -0800
+
+parsoid (0.1.6) wmf-production; urgency=medium
+
+  * Latest master should fix restart issues under load
+  * Increased kill timeout in both upstart and init script to 60 seconds
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 14 Feb 2014 12:40:01 -0800
+
 parsoid (0.1.5) wmf-production; urgency=medium
 
   * Removed unnecessary export in upstart config
