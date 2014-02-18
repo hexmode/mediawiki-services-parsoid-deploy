@@ -1,3 +1,9 @@
+parsoid (0.1.9) wmf-production; urgency=medium
+
+  * Rebuild as last upload did not take rebase into account
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Tue, 18 Feb 2014 13:18:18 -0800
+
 parsoid (0.1.8) wmf-production; urgency=medium
 
   * up ulimit in init script
