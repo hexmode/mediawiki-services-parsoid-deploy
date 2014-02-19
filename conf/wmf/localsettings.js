@@ -3,9 +3,10 @@ exports.setup = function( parsoidConfig ) {
         var dbname,
                 interwikiMap = {
                         'testwiki': 'http://test.wikipedia.org/w/api.php',
-                        'metawiki': 'http://meta.wikimedia.org/w/api.php',
                         'test2wiki': 'http://test2.wikipedia.org/w/api.php',
 
+                        'metawiki': 'http://meta.wikimedia.org/w/api.php',
+                        'incubatorwiki': 'http://incubator.wikimedia.org/w/api.php',
                         'sewikimedia': 'http://se.wikimedia.org/w/api.php' },
 
                 privateInterwikiMap = {
