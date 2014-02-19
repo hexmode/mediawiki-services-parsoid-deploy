@@ -35,4 +35,7 @@ exports.setup = function( parsoidConfig ) {
         // Use the API backends directly without hitting the text varnishes.
         // API requests are not cacheable anyway.
         parsoidConfig.defaultAPIProxyURI = 'http://10.2.2.22';
+
+        // Allow cors as we are only running on non-sensitive domains
+        parsoidConfig.allowCORS = '*';
 };
