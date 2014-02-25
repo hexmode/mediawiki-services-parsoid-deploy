@@ -12,6 +12,7 @@ exports.setup = function( parsoidConfig ) {
                 privateInterwikiMap = {
                         'boardwiki': 'https://board.wikimedia.org/w/api.php',
                         'collabwiki': 'https://collab.wikimedia.org/w/api.php',
+                        'legalteamwiki': 'https://legalteam.wikimedia.org/w/api.php',
                         'officewiki': 'https://office.wikimedia.org/w/api.php',
                         'wikimaniateamwiki': 'https://wikimaniateam.wikimedia.org/w/api.php',
 
