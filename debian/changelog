@@ -1,3 +1,15 @@
+parsoid (0.1.12) wmf-production; urgency=medium
+
+  * Bump to latest deploy
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 06 Jun 2014 13:58:18 -0700
+
+parsoid (0.1.11) wmf-production; urgency=medium
+
+  * Bump to latest deploy
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Fri, 06 Jun 2014 13:57:01 -0700
+
 parsoid (0.1.9) wmf-production; urgency=medium
 
   * Rebuild as last upload did not take rebase into account
