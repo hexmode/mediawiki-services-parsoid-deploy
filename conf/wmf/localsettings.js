@@ -7,7 +7,7 @@ exports.setup = function( parsoidConfig ) {
 
                         'metawiki': 'http://meta.wikimedia.org/w/api.php',
                         'incubatorwiki': 'http://incubator.wikimedia.org/w/api.php',
-                        'outreachwiki': 'https://outreach.wikimedia.org/w/api.php',
+                        'outreachwiki': 'http://outreach.wikimedia.org/w/api.php',
                         'sewikimedia': 'http://se.wikimedia.org/w/api.php',
                         'wikimania2014wiki': 'http://wikimania2014.wikimedia.org/w/api.php'
                 },
