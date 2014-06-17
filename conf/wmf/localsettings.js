@@ -9,7 +9,8 @@ exports.setup = function( parsoidConfig ) {
                         'incubatorwiki': 'http://incubator.wikimedia.org/w/api.php',
                         'outreachwiki': 'http://outreach.wikimedia.org/w/api.php',
                         'sewikimedia': 'http://se.wikimedia.org/w/api.php',
-                        'wikimania2014wiki': 'http://wikimania2014.wikimedia.org/w/api.php'
+                        'wikimania2014wiki': 'http://wikimania2014.wikimedia.org/w/api.php',
+                        'wikimania2015wiki': 'http://wikimania2015.wikimedia.org/w/api.php'
                 },
 
                 privateInterwikiMap = {
