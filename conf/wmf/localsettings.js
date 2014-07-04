@@ -18,6 +18,7 @@ exports.setup = function( parsoidConfig ) {
                         'collabwiki': 'https://collab.wikimedia.org/w/api.php',
                         'legalteamwiki': 'https://legalteam.wikimedia.org/w/api.php',
                         'officewiki': 'https://office.wikimedia.org/w/api.php',
+                        'otrs_wikiwiki': 'https://otrs-wiki.wikimedia.org/w/api.php',
                         'wikimaniateamwiki': 'https://wikimaniateam.wikimedia.org/w/api.php',
 
                         'labswiki': 'https://wikitech.wikimedia.org/w/api.php' // Not private but can't use proxy
