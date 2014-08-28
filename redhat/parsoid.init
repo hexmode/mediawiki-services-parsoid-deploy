@@ -107,19 +107,29 @@ list() {
     su $user -c "$forever list -p $forever_dir"
 }
 
-id $parsoid > /dev/null 2>&1
+id $user > /dev/null 2>&1
 if [ ! $? ]; then
-    echo No user named $parsoid found for $NAME.
+    echo No user named $user found for $NAME.
     exit 1
 fi
 
 if [ -f $pidfile ]; then
     read pid < $pidfile
-    fpid=`su $user -c "$forever list --plain -p $forever_dir" | $awk "/^data:.*parsoid/ {print \\$7}"`
+    fpid=`su $user -c "$forever list --plain -p $forever_dir" | $awk "/^data:.*$NAME/ {print \\$7}"`
+
+    if [ -z "$pid" -a -z "$fpid" ]; then
+        echo PID file is empty.  Please delete $pidfile and try again.
+        exit 1
+    fi
+
+    if [ -z "$pid" -a -n "$fpid" ]; then
+        echo PID file is empty but there are matching processes for $NAME:
+        list
+        exit 1
+    fi
 
     if [ "$pid" != "$fpid" ]; then
-        echo PID mismatch.  Here is a list of running processes:
-
+        echo PID mismatch.  We have $pid but the list of running processes is:
         list
         exit 1
     fi
