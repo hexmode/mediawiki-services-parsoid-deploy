@@ -6,7 +6,7 @@
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
 Version: 0.0.1
-Release: 1
+Release: 2
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
@@ -58,7 +58,7 @@ install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
 
 %pre
 # Add the "parsoid" user
-if [ id parsoid > /dev/null 2>&1 ]; then
+if [ ! id parsoid > /dev/null 2>&1 ]; then
     /usr/sbin/useradd -c "Parsoid" \
 	-s /bin/sh -r -d /var/run/forever parsoid 2> /dev/null || :
     /usr/sbin/usermod --lock parsoid
@@ -102,8 +102,6 @@ fi
 %{_libdir}/node_modules/parsoid/jsduck-conf.json
 %{_libdir}/node_modules/parsoid/package.json
 %{_libdir}/node_modules/parsoid/doc.guides.json
-
-
 
 
 %changelog
