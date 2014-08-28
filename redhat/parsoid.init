@@ -103,12 +103,18 @@ stop() {
     fi
 }
 
+list() {
+    su $user -c "$forever list -p $forever_dir"
+}
+
 if [ -f $pidfile ]; then
     read pid < $pidfile
     fpid=`su $user -c "$forever list --plain -p $forever_dir" | $awk "/^data:.*parsoid/ {print \\$7}"`
 
     if [ "$pid" != "$fpid" ]; then
-        echo PID mismatch.  Try using \"forever list\" to fix $pidfile.
+        echo PID mismatch.  Here is a list of running processes:
+
+        list
         exit 1
     fi
 else
@@ -136,7 +142,7 @@ case "$1" in
         status -p ${pidfile} $NAME
         ;;
     list)
-        su $user -c "$forever list -p $forever_dir"
+        list
         ;;
     *)
         echo "Usage:  {start|stop|restart|status}"
