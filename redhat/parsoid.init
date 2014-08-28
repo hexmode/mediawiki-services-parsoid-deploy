@@ -107,6 +107,11 @@ list() {
     su $user -c "$forever list -p $forever_dir"
 }
 
+if [ ! id $parsoid > /dev/null 2>&1 ]; then
+    echo No user named $parsoid found for $NAME.
+    exit 1
+fi
+
 if [ -f $pidfile ]; then
     read pid < $pidfile
     fpid=`su $user -c "$forever list --plain -p $forever_dir" | $awk "/^data:.*parsoid/ {print \\$7}"`
