@@ -30,6 +30,9 @@ if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
     cd parsoid
     git submodule init
     git submodule update
+else
+    cd $RPM_SOURCE_DIR/parsoid
+    git pull
 fi
 
 mkdir -p %{parsoid_inst}
