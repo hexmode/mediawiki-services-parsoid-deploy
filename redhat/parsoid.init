@@ -108,7 +108,7 @@ list() {
 }
 
 id $user > /dev/null 2>&1
-if [ ! $? ]; then
+if [ "$?" != "0" ]; then
     echo No user named $user found for $NAME.
     exit 1
 fi
