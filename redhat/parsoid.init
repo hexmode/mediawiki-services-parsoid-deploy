@@ -123,14 +123,18 @@ if [ -f $pidfile ]; then
     fi
 
     if [ -z "$pid" -a -n "$fpid" ]; then
-        echo PID file is empty but there are matching processes for $NAME:
+        echo PID file ($pidfile) is empty but there are matching processes for $NAME:
         list
+        echo
+        echo Please correct or delete $pidfile and try again.
         exit 1
     fi
 
     if [ "$pid" != "$fpid" ]; then
-        echo PID mismatch.  We have $pid but the list of running processes is:
+        echo PID mismatch.  We have $pid from $pidfile but the list of running processes is:
         list
+        echo
+        echo Please correct or delete $pidfile and try again.
         exit 1
     fi
 else
