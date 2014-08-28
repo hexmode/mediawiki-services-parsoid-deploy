@@ -58,7 +58,8 @@ install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
 
 %pre
 # Add the "parsoid" user
-if [ ! id parsoid > /dev/null 2>&1 ]; then
+id parsoid > /dev/null 2>&1
+if [ ! $? ]; then
     /usr/sbin/useradd -c "Parsoid" \
 	-s /bin/sh -r -d /var/run/forever parsoid 2> /dev/null || :
     /usr/sbin/usermod --lock parsoid
