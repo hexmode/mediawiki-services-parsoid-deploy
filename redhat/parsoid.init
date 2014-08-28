@@ -1,0 +1,143 @@
+#!/bin/bash
+#
+# parsoid        Startup script for MediaWiki's Parsoid service
+#
+# chkconfig: - 85 15
+# description: Parsoid helps parse wikitext.
+# processname: parsoid
+# config: /etc/parsoid/localsettings.js
+# pidfile: /var/run/parsoid.pid
+# logfile: /var/log/parsoid.log
+
+
+# From https://www.exratione.com/2011/07/running-a-nodejs-server-as-a-service-using-forever/
+
+# Service script for a Node.js application running under Forever.
+#
+# This is suitable for Fedora, Red Hat, CentOS and similar distributions.
+# It will not work on Ubuntu or other Debian-style distributions!
+#
+# There is some perhaps unnecessary complexity going on in the relationship between
+# Forever and the server process. See: https://github.com/indexzero/forever
+#
+# 1) Forever starts its own watchdog process, and keeps its own configuration data
+# in /var/run/forever.
+#
+# 2) If the process dies, Forever will restart it: if it fails but continues to run,
+# it won't be restarted.
+#
+# 3) If the process is stopped via this script, the pidfile is left in place; this
+# helps when issues happen with failed stop attempts.
+#
+# 4) Which means the check for running/not running is complex, and involves parsing
+# of the Forever list output.
+
+# Source function library.
+. /etc/init.d/functions
+
+NAME=parsoid
+SOURCE_DIR=/usr/lib/node_modules/parsoid/api
+SOURCE_FILE=server.js
+
+user=parsoid
+pidfile=/var/run/$NAME.pid
+logfile=/var/log/$NAME.log
+forever_dir=/var/run/forever
+time=1000
+
+node=node
+forever=forever
+awk=awk
+
+export NODE_PATH=/usr/lib/node_modules
+
+if [ ! -d $forever_dir ]; then
+    mkdir -p $forever_dir
+    chown $user $forever_dir
+fi
+
+start() {
+    if [ ! -f "$pidfile" ]; then
+        echo -n "Starting $NAME node instance: "
+        # Create the log and pid files, making sure that
+        # the target use has access to them
+        touch $logfile
+        chown $user $logfile
+
+        touch $pidfile
+        chown $user $pidfile
+
+        # Launch the application
+        cd $forever_dir
+        daemon --user=$user \
+            "$forever start -s --minUptime $time --spinSleepTime $time -p $forever_dir \
+            --pidFile $pidfile -l $logfile -a $SOURCE_DIR/$SOURCE_FILE > /dev/null"
+        RETVAL=$?
+
+        if [ "$RETVAL" == "0" ]; then
+            echo_success; echo
+        else
+            echo_failure; echo
+        fi
+    else
+        echo "Instance already running"
+        RETVAL=0
+    fi
+}
+
+stop() {
+    if [ "$foreverid" != "" ]; then
+        echo -n "Shutting down $NAME node instance : "
+        su $user -c "$forever stop -s -p $forever_dir $foreverid > /dev/null"
+        RETVAL=$?
+
+        if [ "$RETVAL" == "0" ]; then
+            rm $pidfile
+            echo_success; echo
+        else
+            echo_failure; echo
+        fi
+    else
+        echo "$NAME is not running"
+        RETVAL=1
+    fi
+}
+
+if [ -f $pidfile ]; then
+    read pid < $pidfile
+    fpid=`su $user -c "$forever list --plain -p $forever_dir" | $awk "/^data:.*parsoid/ {print \\$7}"`
+
+    if [ "$pid" != "$fpid" ]; then
+        echo PID mismatch.  Try using \"forever list\" to fix $pidfile.
+        exit 1
+    fi
+else
+    pid=""
+fi
+
+if [ "$pid" != "" ]; then
+    foreverid=`su $user -c "$forever list -p $forever_dir" | $awk "/$pid / {print \\$3}"`
+else
+    foreverid=""
+fi
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    status)
+        status -p ${pidfile} $NAME
+        ;;
+    *)
+        echo "Usage:  {start|stop|restart|status}"
+        exit 1
+        ;;
+esac
+exit $RETVAL
