@@ -106,3 +106,10 @@ fi
 
 
 %changelog
+* Thu Aug 28 2014 Mark A. Hershberger <mah@nichework.com>
+    Make init script more generic.
+    Increase error checking.
+    Better error messages.
+    Fix bogus errors caused by wrong variable name.
+    Fix init script checks for user.
+    Fix user creation
