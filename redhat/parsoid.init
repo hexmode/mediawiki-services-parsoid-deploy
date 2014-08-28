@@ -135,6 +135,9 @@ case "$1" in
     status)
         status -p ${pidfile} $NAME
         ;;
+    list)
+        su $user -c "$forever list -p $forever_dir"
+        ;;
     *)
         echo "Usage:  {start|stop|restart|status}"
         exit 1
