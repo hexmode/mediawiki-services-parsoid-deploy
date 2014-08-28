@@ -1,6 +1,7 @@
 %define _binary_payload w9.gzdio
 %define logdir /var/log
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
+%define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/parsoid
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
@@ -23,25 +24,33 @@ Mediawiki parser for the VisualEditor.
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{_libdir}/parsoid
-cd $RPM_BUILD_ROOT/%{_libdir}
-git clone %{gitrepo} parsoid-repo
-cd parsoid-repo
-git submodule init
-git submodule update
-mv src/* $RPM_BUILD_ROOT/%{_libdir}/parsoid
-mv node_modules $RPM_BUILD_ROOT/%{_libdir}/parsoid
+if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
+    cd $RPM_SOURCE_DIR
+    git clone %{gitrepo} parsoid
+    cd parsoid
+    git submodule init
+    git submodule update
+fi
+
+mkdir -p %{parsoid_inst}
+cp -pr $RPM_SOURCE_DIR/parsoid/src/* %{parsoid_inst}
+rm -rf %{parsoid_inst}/tests
+cp -pr $RPM_SOURCE_DIR/parsoid/node_modules %{parsoid_inst}
 
 # install SYSV init stuff
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/parsoid
 mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
-install -m755 ./redhat/parsoid.init \
-	$RPM_BUILD_ROOT/etc/rc.d/init.d/parsoid
+install -m755 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.init \
+    $RPM_BUILD_ROOT/etc/rc.d/init.d/parsoid
 
 # install log rotation stuff
 mkdir -p $RPM_BUILD_ROOT/etc/logrotate.d
-install -m644 ./redhat/parsoid.logrotate \
-	$RPM_BUILD_ROOT/etc/logrotate.d/httpd
+install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.logrotate \
+    $RPM_BUILD_ROOT/etc/logrotate.d/parsoid
 
+# localsettings
+install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
+    $RPM_BUILD_ROOT/%{_sysconfdir}/parsoid/localsettings.js
 
 
 %pre
@@ -77,7 +86,21 @@ fi
 
 %config /etc/rc.d/init.d/parsoid
 %config /etc/parsoid/localsettings.js
+%config /etc/logrotate.d/parsoid
 %doc %{_libdir}/parsoid/guides
-%{_libdir}/parsoid
+%doc %{_libdir}/parsoid/COPYING
+%doc %{_libdir}/parsoid/AUTHORS.txt
+%doc %{_libdir}/parsoid/README.txt
+%{_libdir}/parsoid/node_modules
+%{_libdir}/parsoid/api
+%{_libdir}/parsoid/lib
+%{_libdir}/parsoid/manifest.yml
+%{_libdir}/parsoid/doc.basicTypes.js
+%{_libdir}/parsoid/jsduck-conf.json
+%{_libdir}/parsoid/package.json
+%{_libdir}/parsoid/doc.guides.json
+
+
+
 
 %changelog
