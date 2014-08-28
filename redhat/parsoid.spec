@@ -1,7 +1,7 @@
 %define _binary_payload w9.gzdio
 %define logdir /var/log
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
-%define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/parsoid
+%define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
@@ -23,7 +23,7 @@ Requires(pre): /usr/sbin/useradd
 Mediawiki parser for the VisualEditor.
 
 %install
-mkdir -p $RPM_BUILD_ROOT/%{_libdir}/parsoid
+mkdir -p %{parsoid_inst}
 if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
     cd $RPM_SOURCE_DIR
     git clone %{gitrepo} parsoid
@@ -90,18 +90,18 @@ fi
 %config /etc/rc.d/init.d/parsoid
 %config /etc/parsoid/localsettings.js
 %config /etc/logrotate.d/parsoid
-%doc %{_libdir}/parsoid/guides
-%doc %{_libdir}/parsoid/COPYING
-%doc %{_libdir}/parsoid/AUTHORS.txt
-%doc %{_libdir}/parsoid/README.txt
-%{_libdir}/parsoid/node_modules
-%{_libdir}/parsoid/api
-%{_libdir}/parsoid/lib
-%{_libdir}/parsoid/manifest.yml
-%{_libdir}/parsoid/doc.basicTypes.js
-%{_libdir}/parsoid/jsduck-conf.json
-%{_libdir}/parsoid/package.json
-%{_libdir}/parsoid/doc.guides.json
+%doc %{_libdir}/node_modules/parsoid/guides
+%doc %{_libdir}/node_modules/parsoid/COPYING
+%doc %{_libdir}/node_modules/parsoid/AUTHORS.txt
+%doc %{_libdir}/node_modules/parsoid/README.txt
+%{_libdir}/node_modules/parsoid/node_modules
+%{_libdir}/node_modules/parsoid/api
+%{_libdir}/node_modules/parsoid/lib
+%{_libdir}/node_modules/parsoid/manifest.yml
+%{_libdir}/node_modules/parsoid/doc.basicTypes.js
+%{_libdir}/node_modules/parsoid/jsduck-conf.json
+%{_libdir}/node_modules/parsoid/package.json
+%{_libdir}/node_modules/parsoid/doc.guides.json
 
 
 
