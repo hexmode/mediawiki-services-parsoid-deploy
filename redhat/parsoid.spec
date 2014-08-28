@@ -107,6 +107,7 @@ fi
 
 %changelog
 * Thu Aug 28 2014 Mark A. Hershberger <mah@nichework.com>
+
     Make init script more generic.
     Increase error checking.
     Better error messages.
