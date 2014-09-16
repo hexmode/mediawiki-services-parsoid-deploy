@@ -7,7 +7,7 @@
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
 Version: 0.0.1REL1_23
-Release: 4
+Release: 5
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
@@ -16,7 +16,7 @@ License: GPLv2
 Group: System Environment/Daemons
 BuildRoot: %buildroot
 BuildArch: noarch
-Requires: initscripts >= 8.36, node-forever
+Requires: initscripts >= 8.36, nodejs-forever
 Requires(post): chkconfig
 Requires(pre): /usr/sbin/useradd
 
