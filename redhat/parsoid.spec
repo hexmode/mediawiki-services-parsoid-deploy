@@ -2,11 +2,12 @@
 %define logdir /var/log
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
 %define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
+%define git_branch REL1_23
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
-Version: 0.0.1
-Release: 2
+Version: 0.0.1REL1_23
+Release: 4
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
@@ -26,13 +27,13 @@ Mediawiki parser for the VisualEditor.
 mkdir -p %{parsoid_inst}
 if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
     cd $RPM_SOURCE_DIR
-    git clone %{gitrepo} parsoid
+    git clone -b %{git_branch} %{gitrepo} parsoid
     cd parsoid
     git submodule init
     git submodule update
 else
-    cd $RPM_SOURCE_DIR/parsoid
-    git pull
+    cd $RPM_SOURCE_DIR/parsoid/src
+    git checkout %{git_branch}
 fi
 
 mkdir -p %{parsoid_inst}
@@ -106,10 +107,15 @@ fi
 
 
 %changelog
+* Tue Sep 16 2014 Mark A. Hershberger  <mah@nichework.com>
+
+    Fix status call so pid file isn't deleted un-necessarily.
+
 * Thu Aug 28 2014 Mark A. Hershberger <mah@nichework.com>
-Various minor issues with user creation:
+
+    Various minor issues with user creation:
     Fix bogus errors caused by wrong variable name.
     Fix init script checks for user.
     Fix user creation.
     Increase error checking and make better error messages.
-Also made init script more generic.
+    Also made init script more generic.

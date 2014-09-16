@@ -160,6 +160,7 @@ case "$1" in
         ;;
     status)
         status -p ${pidfile} $NAME
+        RETVAL=$?
         ;;
     list)
         list
