@@ -2,12 +2,12 @@
 %define logdir /var/log
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
 %define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
-%define git_branch REL1_23
+%define git_branch master
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
-Version: 0.0.1REL1_23
-Release: 5
+Version: 0.0.1master
+Release: 6
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
