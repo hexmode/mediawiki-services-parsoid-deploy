@@ -55,6 +55,8 @@ install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.logrotate \
 # localsettings
 install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
     $RPM_BUILD_ROOT/%{_sysconfdir}/parsoid/localsettings.js
+ln -s ../../../../etc/parsoid/localsetttings.js $RPM_BUILD_ROOT/usr/lib/node_modules/parsoid/api
+
 
 
 %pre
@@ -81,8 +83,10 @@ fi
 
 %preun
 if [ $1 = 0 ]; then
-	/sbin/service parsoid stop > /dev/null 2>&1
-	/sbin/chkconfig --del parsoid
+	if [ -f /etc/init.d/parsoid ]; then
+		/sbin/service parsoid stop > /dev/null 2>&1
+		/sbin/chkconfig --del parsoid
+	fi
 fi
 
 
