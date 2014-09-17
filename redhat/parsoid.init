@@ -41,15 +41,26 @@ SOURCE_FILE=server.js
 
 user=parsoid
 pidfile=/var/run/$NAME.pid
-logfile=/var/log/$NAME.log
+logfile=/var/log/$NAME/forever.log
+stdout=/var/log/$NAME/main.log
+errlog=/var/log/$NAME/error.log
 forever_dir=/var/run/forever
 time=1000
 
 node=node
-forever=forever
+forever="forever -p $forever_dir -l $logfile -o $stdout -e $errlog"
 awk=awk
 
 export NODE_PATH=/usr/lib/node_modules
+
+if [ -f /etc/default/parsoid ]; then
+    . /etc/default/parsoid
+fi
+
+if [ ! -d /var/log/$NAME ]; then
+    mkdir -p /var/log/$NAME
+    chown $user /var/log/$NAME
+fi
 
 if [ ! -d $forever_dir ]; then
     mkdir -p $forever_dir
@@ -70,8 +81,8 @@ start() {
         # Launch the application
         cd $forever_dir
         daemon --user=$user \
-            "$forever start -s --minUptime $time --spinSleepTime $time -p $forever_dir \
-            --pidFile $pidfile -l $logfile -a $SOURCE_DIR/$SOURCE_FILE > /dev/null 2>&1"
+            "$forever start -s --minUptime $time --spinSleepTime $time \
+            --pidFile $pidfile -a $SOURCE_DIR/$SOURCE_FILE > /dev/null 2>&1"
         RETVAL=$?
 
         if [ "$RETVAL" == "0" ]; then
@@ -88,7 +99,7 @@ start() {
 stop() {
     if [ "$foreverid" != "" ]; then
         echo -n "Shutting down $NAME node instance : "
-        su $user -c "$forever stop -s -p $forever_dir $foreverid > /dev/null"
+        su $user -c "$forever stop -s $foreverid > /dev/null"
         RETVAL=$?
 
         if [ "$RETVAL" == "0" ]; then
@@ -104,7 +115,7 @@ stop() {
 }
 
 list() {
-    su $user -c "$forever list -p $forever_dir"
+    su $user -c "$forever list"
 }
 
 id $user > /dev/null 2>&1
@@ -115,7 +126,7 @@ fi
 
 if [ -f $pidfile ]; then
     read pid < $pidfile
-    fpid=`su $user -c "$forever list --plain -p $forever_dir" | $awk "/^data:.*$NAME/ {print \\$7}"`
+    fpid=`su $user -c "$forever list --plain" | $awk "/^data:.*$NAME/ {print \\$7}"`
 
     if [ -z "$pid" -a -z "$fpid" ]; then
         echo PID file is empty.  Please delete $pidfile and try again.
@@ -142,7 +153,7 @@ else
 fi
 
 if [ "$pid" != "" ]; then
-    foreverid=`su $user -c "$forever list -p $forever_dir" | $awk "/$pid / {print \\$3}"`
+    foreverid=`su $user -c "$forever list" | $awk "/$pid / {print \\$3}"`
 else
     foreverid=""
 fi
