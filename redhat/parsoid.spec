@@ -1,3 +1,4 @@
+%define _binaries_in_noarch_packages_terminate_build   0
 %define _binary_payload w9.gzdio
 %define logdir /var/log
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
