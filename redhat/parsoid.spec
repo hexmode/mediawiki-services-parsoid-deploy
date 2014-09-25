@@ -7,7 +7,7 @@
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
 Version: 0.0.1master
-Release: 6
+Release: 7
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
@@ -34,8 +34,11 @@ if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
 else
     cd $RPM_SOURCE_DIR/parsoid/src
     git checkout %{git_branch}
+    git pull
 fi
 
+cd $RPM_SOURCE_DIR/parsoid
+npm update
 mkdir -p %{parsoid_inst}
 cp -pr $RPM_SOURCE_DIR/parsoid/src/* %{parsoid_inst}
 rm -rf %{parsoid_inst}/tests
