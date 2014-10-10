@@ -43,4 +43,28 @@ exports.setup = function( parsoidConfig ) {
 	//
 	parsoidConfig.parsoidCacheURI = 'http://10.68.16.145/'; // deployment-parsoidcache01.eqiad.wmflabs
 
+	// parsoidConfig.apiProxyURI = 'http://en.wikipedia.org';
+
+	// Direct logs to logstash via bunyan and gelf-stream.
+	LOGSTASH_HOSTNAME='deployment-logstash1.eqiad.wmflabs';
+	LOGSTASH_PORT=12201;
+	parsoidConfig.loggerBackend = {
+		name: ':Logger.bunyan/BunyanLogger',
+		options: {
+			// Enable most permissive level here to replicate all log entries to
+			// both streams. If we want to redirect different levels to different
+			// targets, we can use levels at that time.
+			streams: [
+				{
+					stream: process.stdout,
+					level: 'debug'
+				},
+				{
+					type: 'raw',
+					stream: require('gelf-stream').forBunyan(LOGSTASH_HOSTNAME, LOGSTASH_PORT),
+					level: 'debug'
+				}
+			]
+		}
+	};
 };
