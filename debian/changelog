@@ -1,3 +1,15 @@
+parsoid (0.1.14) wmf-production; urgency=medium
+
+  * update to current master
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Wed, 15 Oct 2014 18:06:52 -0700
+
+parsoid (0.1.13) wmf-production; urgency=medium
+
+  * Bump to 0b365d51 
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Mon, 30 Jun 2014 12:26:02 -0700
+
 parsoid (0.1.12) wmf-production; urgency=medium
 
   * Bump to latest deploy
