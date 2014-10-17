@@ -54,6 +54,7 @@ exports.setup = function( parsoidConfig ) {
 			// Enable most permissive level here to replicate all log entries to
 			// both streams. If we want to redirect different levels to different
 			// targets, we can use levels at that time.
+			name: 'parsoid',
 			streams: [
 				{
 					stream: process.stdout,
