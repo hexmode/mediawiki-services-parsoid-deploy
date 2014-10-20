@@ -1,5 +1,4 @@
 exports.setup = function( parsoidConfig ) {
-
 	parsoidConfig.setInterwiki( 'aawiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );
 	parsoidConfig.setInterwiki( 'arwiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );
 	parsoidConfig.setInterwiki( 'cawiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );
@@ -46,14 +45,15 @@ exports.setup = function( parsoidConfig ) {
 	// parsoidConfig.apiProxyURI = 'http://en.wikipedia.org';
 
 	// Direct logs to logstash via bunyan and gelf-stream.
-	LOGSTASH_HOSTNAME='deployment-logstash1.eqiad.wmflabs';
-	LOGSTASH_PORT=12201;
+	var LOGSTASH_HOSTNAME='deployment-logstash1.eqiad.wmflabs';
+	var LOGSTASH_PORT=12201;
 	parsoidConfig.loggerBackend = {
 		name: ':Logger.bunyan/BunyanLogger',
 		options: {
-			// Enable most permissive level here to replicate all log entries to
-			// both streams. If we want to redirect different levels to different
-			// targets, we can use levels at that time.
+			// No need to do any log suppression here -- we are doing that filtering
+			// in ParsoidLogger already. So, we will enable most permissive level here
+			// to replicate all log entries to both streams. If we want to redirect
+			// different levels to different targets, we can use different levels at that time.
 			name: 'parsoid',
 			streams: [
 				{
