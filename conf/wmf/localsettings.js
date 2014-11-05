@@ -65,7 +65,7 @@ exports.setup = function( parsoidConfig ) {
 				{
 					type: 'raw',
 					stream: require('gelf-stream').forBunyan(LOGSTASH_HOSTNAME, LOGSTASH_PORT),
-					level: 'warning'
+					level: 'warn'
 				}
 			]
 		}
