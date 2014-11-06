@@ -5,7 +5,7 @@ exports.setup = function( parsoidConfig ) {
 			'testwiki': 'http://test.wikipedia.org/w/api.php',
 			'test2wiki': 'http://test2.wikipedia.org/w/api.php',
 
-			'foundationwiki', 'http://wikimediafoundation.org/w/api.php',
+			'foundationwiki': 'http://wikimediafoundation.org/w/api.php',
 			'metawiki': 'http://meta.wikimedia.org/w/api.php',
 			'incubatorwiki': 'http://incubator.wikimedia.org/w/api.php',
 			'outreachwiki': 'http://outreach.wikimedia.org/w/api.php',
