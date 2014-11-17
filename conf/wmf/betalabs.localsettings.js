@@ -1,3 +1,4 @@
+"use strict";
 exports.setup = function( parsoidConfig ) {
 	parsoidConfig.setInterwiki( 'aawiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );
 	parsoidConfig.setInterwiki( 'arwiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );

@@ -1,3 +1,4 @@
+"use strict";
 exports.setup = function( parsoidConfig ) {
 	// Map from DB name to API URL
 	var dbname,
