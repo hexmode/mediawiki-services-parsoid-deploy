@@ -13,7 +13,8 @@ exports.setup = function( parsoidConfig ) {
 			'outreachwiki': 'http://outreach.wikimedia.org/w/api.php',
 			'sewikimedia': 'http://se.wikimedia.org/w/api.php',
 			'wikimania2014wiki': 'http://wikimania2014.wikimedia.org/w/api.php',
-			'wikimania2015wiki': 'http://wikimania2015.wikimedia.org/w/api.php'
+			'wikimania2015wiki': 'http://wikimania2015.wikimedia.org/w/api.php',
+			'species': 'http://species.wikimedia.org/w/api.php'
 		},
 
 		privateInterwikiMap = {
