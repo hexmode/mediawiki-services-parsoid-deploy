@@ -8,6 +8,7 @@ exports.setup = function( parsoidConfig ) {
 
 			'foundationwiki': 'http://wikimediafoundation.org/w/api.php',
 			'metawiki': 'http://meta.wikimedia.org/w/api.php',
+			'wikidatawiki': 'http://www.wikidata.org/w/api.php',
 			'incubatorwiki': 'http://incubator.wikimedia.org/w/api.php',
 			'outreachwiki': 'http://outreach.wikimedia.org/w/api.php',
 			'sewikimedia': 'http://se.wikimedia.org/w/api.php',
