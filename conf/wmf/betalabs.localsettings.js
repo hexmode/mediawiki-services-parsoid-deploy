@@ -1,5 +1,7 @@
 "use strict";
 exports.setup = function( parsoidConfig ) {
+	parsoidConfig.loadWMF = false;
+
 	parsoidConfig.setInterwiki( 'aawiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );
 	parsoidConfig.setInterwiki( 'arwiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );
 	parsoidConfig.setInterwiki( 'cawiki', 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' );

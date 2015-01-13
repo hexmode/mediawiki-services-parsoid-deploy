@@ -1,43 +1,6 @@
 "use strict";
 exports.setup = function( parsoidConfig ) {
-	// Map from DB name to API URL
-	var dbname,
-		interwikiMap = {
-			'testwiki': 'http://test.wikipedia.org/w/api.php',
-			'test2wiki': 'http://test2.wikipedia.org/w/api.php',
-
-			'foundationwiki': 'http://wikimediafoundation.org/w/api.php',
-			'metawiki': 'http://meta.wikimedia.org/w/api.php',
-			'wikidatawiki': 'http://www.wikidata.org/w/api.php',
-			'incubatorwiki': 'http://incubator.wikimedia.org/w/api.php',
-			'outreachwiki': 'http://outreach.wikimedia.org/w/api.php',
-			'sewikimedia': 'http://se.wikimedia.org/w/api.php',
-			'wikimania2014wiki': 'http://wikimania2014.wikimedia.org/w/api.php',
-			'wikimania2015wiki': 'http://wikimania2015.wikimedia.org/w/api.php',
-			'species': 'http://species.wikimedia.org/w/api.php'
-		},
-
-		privateInterwikiMap = {
-			'boardwiki': 'https://board.wikimedia.org/w/api.php',
-			'collabwiki': 'https://collab.wikimedia.org/w/api.php',
-			'legalteamwiki': 'https://legalteam.wikimedia.org/w/api.php',
-			'officewiki': 'https://office.wikimedia.org/w/api.php',
-			'otrs_wikiwiki': 'https://otrs-wiki.wikimedia.org/w/api.php',
-			'wikimaniateamwiki': 'https://wikimaniateam.wikimedia.org/w/api.php',
-
-			'labswiki': 'https://wikitech.wikimedia.org/w/api.php' // Not private but can't use proxy
-	};
-
-	for ( dbname in interwikiMap ) {
-		parsoidConfig.setInterwiki( dbname, interwikiMap[dbname] );
-	}
-
-	for ( dbname in privateInterwikiMap ) {
-		// Disable proxying for special wikis
-		// TODO: See if we can go direct for some of those too
-		parsoidConfig.setInterwiki( dbname, privateInterwikiMap[dbname], null );
-	}
-
+	parsoidConfig.loadWMF = true;
 	parsoidConfig.usePHPPreProcessor = true;
 	parsoidConfig.useSelser = true;
 	// parsoid cache url
