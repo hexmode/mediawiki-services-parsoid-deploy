@@ -3,6 +3,7 @@ var Element = require('./Element');
 var CSSStyleDeclaration = require('./CSSStyleDeclaration');
 var NAMESPACE = require('./utils').NAMESPACE;
 var attributes = require('./attributes');
+var URLUtils = require('./URLUtils');
 var utils = require('./utils');
 
 var impl = exports.elements = {};
@@ -273,6 +274,7 @@ define({
     type: String
   }
 });
+URLUtils._inherit(tagNameToImpl.a.prototype);
 
 define({
   tag: 'area',
