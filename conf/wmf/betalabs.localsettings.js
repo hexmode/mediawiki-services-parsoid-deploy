@@ -71,4 +71,9 @@ exports.setup = function( parsoidConfig ) {
 			]
 		}
 	};
+
+	// Use txstatsd to send Performance Timing information
+	parsoidConfig.usePerformanceTimer = true;
+	parsoidConfig.txstatsdHost = 'labmon1001.eqiad.wmnet';
+	parsoidConfig.txstatsdPort = 8125;
 };
