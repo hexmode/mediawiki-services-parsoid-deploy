@@ -8,7 +8,7 @@
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
 Version: 0.0.1master
-Release: 7
+Release: 20150318
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
@@ -59,7 +59,7 @@ install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.logrotate \
 # localsettings
 install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
     $RPM_BUILD_ROOT/%{_sysconfdir}/parsoid/localsettings.js
-ln -s ../../../../etc/parsoid/localsetttings.js $RPM_BUILD_ROOT/usr/lib/node_modules/parsoid/api
+ln -s /etc/parsoid/localsettings.js $RPM_BUILD_ROOT/usr/lib/node_modules/parsoid/api
 
 
 
@@ -103,15 +103,16 @@ fi
 %doc %{_libdir}/node_modules/parsoid/guides
 %doc %{_libdir}/node_modules/parsoid/COPYING
 %doc %{_libdir}/node_modules/parsoid/AUTHORS.txt
-%doc %{_libdir}/node_modules/parsoid/README.txt
+%doc %{_libdir}/node_modules/parsoid/README.md
 %{_libdir}/node_modules/parsoid/node_modules
 %{_libdir}/node_modules/parsoid/api
 %{_libdir}/node_modules/parsoid/lib
-%{_libdir}/node_modules/parsoid/manifest.yml
 %{_libdir}/node_modules/parsoid/doc.basicTypes.js
 %{_libdir}/node_modules/parsoid/jsduck-conf.json
 %{_libdir}/node_modules/parsoid/package.json
 %{_libdir}/node_modules/parsoid/doc.guides.json
+%{_libdir}/node_modules/parsoid/docs/specs/apiv2.yaml
+
 
 
 %changelog
