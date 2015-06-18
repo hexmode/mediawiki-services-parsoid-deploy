@@ -3,8 +3,8 @@ exports.setup = function(parsoidConfig) {
 	parsoidConfig.loadWMF = false;
 
 	parsoidConfig.setMwApi('aawiki', { uri: 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi('arwiki', { uri: 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi('cawiki', { uri: 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi('arwiki', { uri: 'http://ar.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi('cawiki', { uri: 'http://ca.wikipedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi('commonswiki', { uri: 'http://commons.wikimedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi('dewiki', { uri: 'http://de.wikipedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi('en_rtlwiki', { uri: 'http://en-rtl.wikipedia.beta.wmflabs.org/w/api.php' });
