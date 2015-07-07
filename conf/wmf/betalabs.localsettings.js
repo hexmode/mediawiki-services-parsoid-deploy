@@ -48,7 +48,7 @@ exports.setup = function(parsoidConfig) {
 	// parsoidConfig.apiProxyURI = 'http://en.wikipedia.org';
 
 	// Direct logs to logstash via bunyan and gelf-stream.
-	var LOGSTASH_HOSTNAME='deployment-logstash1.eqiad.wmflabs';
+	var LOGSTASH_HOSTNAME='deployment-logstash2.deployment-prep.eqiad.wmflabs';
 	var LOGSTASH_PORT=12201;
 	parsoidConfig.loggerBackend = {
 		name: ':Logger.bunyan/BunyanLogger',
