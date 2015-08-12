@@ -13,6 +13,11 @@ exports.setup = function( parsoidConfig ) {
 	// Allow cors as we are only running on non-sensitive domains
 	parsoidConfig.allowCORS = '*';
 
+	parsoidConfig.setMwApi( 'labswiki', {
+		uri: 'https://wikitech.wikimedia.org/w/api.php',
+		proxy: { uri: null }
+	} );
+
 	// Direct logs to logstash via bunyan and gelf-stream.
 	var LOGSTASH_HOSTNAME='logstash1003.eqiad.wmnet';
 	var LOGSTASH_PORT=12201;
