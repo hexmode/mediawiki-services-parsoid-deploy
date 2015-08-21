@@ -13,7 +13,8 @@ exports.setup = function( parsoidConfig ) {
 	// Allow cors as we are only running on non-sensitive domains
 	parsoidConfig.allowCORS = '*';
 
-	parsoidConfig.setMwApi( 'labswiki', {
+	parsoidConfig.setMwApi({
+		prefix: 'labswiki',
 		uri: 'https://wikitech.wikimedia.org/w/api.php',
 		proxy: { uri: null }
 	} );
