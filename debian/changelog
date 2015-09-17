@@ -1,3 +1,8 @@
+parsoid (0.4.1) wmf-production; urgency=medium
+
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Thu, 17 Sep 2015 12:08:40 -0700
+
 parsoid (0.3.0) wmf-production; urgency=medium
 
   * release v0.3.0
