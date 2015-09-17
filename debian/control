@@ -9,8 +9,7 @@ Vcs-Git: https://gerrit.wikimedia.org/r/mediawiki/services/parsoid/deploy
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/parsoid.git;a=summary
 
 Package: parsoid
-# we only package amd64 for now
-Architecture: amd64
+Architecture: all
 Depends: nodejs (>=0.8.0), logrotate, adduser, ${shlibs:Depends}, ${misc:Depends}
 Enhances: mediawiki
 Description: Web service converting HTML+RDFa to MediaWiki wikitext and back

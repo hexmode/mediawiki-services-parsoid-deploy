@@ -1,3 +1,9 @@
+parsoid (0.4.1all) wmf-production; urgency=medium
+
+  * Switch release to 'all' architectures
+
+ -- Gabriel Wicke <gwicke@wikimedia.org>  Thu, 17 Sep 2015 13:05:52 -0700
+
 parsoid (0.4.1) wmf-production; urgency=medium
 
 
