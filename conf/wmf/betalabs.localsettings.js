@@ -37,6 +37,9 @@ exports.setup = function(parsoidConfig) {
 	// Use the PHP preprocessor to expand templates via the MW API (default true)
 	parsoidConfig.usePHPPreProcessor = true;
 
+	// Communicate with the ParsoidBatchAPI extension on the MW API side (default false)
+	parsoidConfig.useBatchAPI = true;
+
 	// Use selective serialization (default false)
 	parsoidConfig.useSelser = true;
 
