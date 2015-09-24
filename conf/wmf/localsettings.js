@@ -2,6 +2,10 @@
 exports.setup = function( parsoidConfig ) {
 	parsoidConfig.loadWMF = true;
 	parsoidConfig.usePHPPreProcessor = true;
+
+	// Communicate with the ParsoidBatchAPI extension on the MW API side (default false)
+	parsoidConfig.useBatchAPI = true;
+
 	parsoidConfig.useSelser = true;
 	// parsoid cache url
 	parsoidConfig.parsoidCacheURI = 'http://10.2.2.29/';
