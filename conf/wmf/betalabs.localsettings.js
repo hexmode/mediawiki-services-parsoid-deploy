@@ -14,6 +14,7 @@ exports.setup = function(parsoidConfig) {
 	parsoidConfig.setMwApi({ prefix: 'enwikiquote', uri: 'http://en.wikiquote.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'enwikisource', uri: 'http://en.wikisource.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'enwikiversity', uri: 'http://en.wikiversity.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikivoyage', uri: 'http://en.wikivoyage.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'enwiktionary', uri: 'http://en.wikitionary.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'eowiki', uri: 'http://eo.wikipedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'eswiki', uri: 'http://es.wikipedia.beta.wmflabs.org/w/api.php' });
