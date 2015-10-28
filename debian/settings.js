@@ -4,9 +4,9 @@
  * Copy this file to localsettings.js and edit that file to fit your needs.
  *
  * Also see:
- * - api/server.js for more information about passing config files via
+ * - bin/server.js for more information about passing config files via
  *   the commandline.
- * - lib/mediawiki.ParsoidConfig.js all the properties
+ * - lib/config/ParsoidConfig.js all the properties
  *   that you can configure here. Not all properties are
  *   documented here.
  */

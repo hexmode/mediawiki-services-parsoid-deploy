@@ -19,7 +19,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Parsoid HTTP service"
 NAME=parsoid
-SCRIPT_PATH=/usr/lib/parsoid/src/api/server.js
+SCRIPT_PATH=/usr/lib/parsoid/src/bin/server.js
 DAEMON="/usr/bin/nodejs $SCRIPT_PATH"
 DAEMON_ARGS=""
 PIDFILE=/var/run/$NAME.pid
