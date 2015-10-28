@@ -76,6 +76,14 @@ exports.setup = function(parsoidConfig) {
 		}
 	};
 
+	// Sample verbose logs
+	parsoidConfig.loggerSampling = [
+		['warning/dsr/inconsistent', 5],
+		['warning/empty/li', 10],
+		['warning/empty/tr', 10],
+		[/^warning\/empty\//, 10],
+	];
+
 	// Use txstatsd to send Performance Timing information
 	parsoidConfig.useDefaultPerformanceTimer = true;
 	parsoidConfig.txstatsdHost = 'labmon1001.eqiad.wmnet';

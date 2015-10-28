@@ -48,6 +48,14 @@ exports.setup = function( parsoidConfig ) {
 		}
 	};
 
+	// Sample these verbose logs to prevent overwhelm
+	parsoidConfig.loggerSampling = [
+		['warning/dsr/inconsistent', 5],
+		['warning/empty/li', 2],
+		['warning/empty/tr', 2],
+		[/^warning\/empty\//, 5],
+	];
+
 	// Use txstatsd for Performance Timing information
 	parsoidConfig.useDefaultPerformanceTimer = true;
 	parsoidConfig.txstatsdHost = 'statsd.eqiad.wmnet';
