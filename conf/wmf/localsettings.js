@@ -49,10 +49,12 @@ exports.setup = function( parsoidConfig ) {
 	};
 
 	// Sample these verbose logs to prevent overwhelm
+	// 1% and 2% for empty/tr and empty/li is based on
+	// seeing the volume in rt-testing.
 	parsoidConfig.loggerSampling = [
 		['warning/dsr/inconsistent', 5],
 		['warning/empty/li', 2],
-		['warning/empty/tr', 2],
+		['warning/empty/tr', 1],
 		[/^warning\/empty\//, 5],
 	];
 
