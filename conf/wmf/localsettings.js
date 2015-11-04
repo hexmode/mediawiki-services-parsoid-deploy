@@ -53,8 +53,8 @@ exports.setup = function( parsoidConfig ) {
 	// seeing the volume in rt-testing.
 	parsoidConfig.loggerSampling = [
 		['warning/dsr/inconsistent', 5],
-		['warning/empty/li', 2],
-		['warning/empty/tr', 1],
+		['warning/empty/li', 1],
+		['warning/empty/tr', 0],
 		[/^warning\/empty\//, 5],
 	];
 
