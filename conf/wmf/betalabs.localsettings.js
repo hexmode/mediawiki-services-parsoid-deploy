@@ -34,6 +34,8 @@ exports.setup = function(parsoidConfig) {
 	parsoidConfig.setMwApi({ prefix: 'wikidatawiki', uri: 'http://wikidata.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'zerowiki', uri: 'http://zero.wikimedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'zhwiki', uri: 'http://zh.wikipedia.beta.wmflabs.org/w/api.php' });
+	// the production enwiki: a work-around to be able to use the labs parsoid instance from RESTBase
+	parsoidConfig.setMwApi({ prefix: 'enwikiprod', uri: 'https://en.wikipedia.org/w/api.php' });
 
 	// Use the PHP preprocessor to expand templates via the MW API (default true)
 	parsoidConfig.usePHPPreProcessor = true;
