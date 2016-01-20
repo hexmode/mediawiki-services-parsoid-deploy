@@ -17,12 +17,13 @@ exports.setup = function( parsoidConfig ) {
 	// Allow cors as we are only running on non-sensitive domains
 	parsoidConfig.allowCORS = '*';
 
-	// RESTBase uses 2 minutes timeouts, so, 4 minutes on our end
-	// does no good beyond getting us more requests that could fail.
-	// Let us start with 3 minutes and see what this does and maybe
-	// bump restbase to a higher value or parsoid to a lower value.
-	parsoidConfig.timeouts.request = 3*60*1000; // 3 minutes
-	parsoidConfig.timeouts.cpu = 4*60*1000; // 4 minutes
+	// RESTBase uses 2 minutes timeouts for the first request
+	// and a higher value subsequently.
+	//
+	// Request timeouts are currently disabled in Parsoid.
+	// So, use a 3-min cpu timeout instead.
+	parsoidConfig.timeouts.request = 2*60*1000; // 2 minutes
+	parsoidConfig.timeouts.cpu = 3*60*1000; // 3 minutes
 
 	parsoidConfig.setMwApi({
 		prefix: 'labswiki',
