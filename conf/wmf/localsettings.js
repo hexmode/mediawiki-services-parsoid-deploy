@@ -7,8 +7,6 @@ exports.setup = function( parsoidConfig ) {
 	parsoidConfig.useBatchAPI = true;
 
 	parsoidConfig.useSelser = true;
-	// parsoid cache url
-	parsoidConfig.parsoidCacheURI = 'http://10.2.2.29/';
 
 	// Use the API backends directly without hitting the text varnishes.
 	// API requests are not cacheable anyway.
