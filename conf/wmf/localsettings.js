@@ -23,12 +23,6 @@ exports.setup = function( parsoidConfig ) {
 	parsoidConfig.timeouts.request = 2*60*1000; // 2 minutes
 	parsoidConfig.timeouts.cpu = 3*60*1000; // 3 minutes
 
-	parsoidConfig.setMwApi({
-		prefix: 'labswiki',
-		uri: 'https://wikitech.wikimedia.org/w/api.php',
-		proxy: { uri: null }
-	} );
-
 	// Direct logs to logstash via bunyan and gelf-stream.
 	var LOGSTASH_HOSTNAME='logstash1003.eqiad.wmnet';
 	var LOGSTASH_PORT=12201;
