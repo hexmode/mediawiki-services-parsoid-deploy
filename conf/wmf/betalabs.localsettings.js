@@ -26,6 +26,7 @@ exports.setup = function(parsoidConfig) {
 	parsoidConfig.setMwApi({ prefix: 'labs', uri: 'http://deployment.wikimedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'loginwiki', uri: 'http://login.wikimedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'metawiki', uri: 'http://meta.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'nlwiki', uri: 'http://nl.wikipedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'ruwiki', uri: 'http://ru.wikipedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'simplewiki', uri: 'http://simple.wikipedia.beta.wmflabs.org/w/api.php' });
 	parsoidConfig.setMwApi({ prefix: 'sqwiki', uri: 'http://sq.wikipedia.beta.wmflabs.org/w/api.php' });
