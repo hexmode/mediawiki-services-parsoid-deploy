@@ -1,3 +1,28 @@
+parsoid (0.5.1all) jessie-mediawiki; urgency=medium
+
+   * Fixes to the broken 0.5.0 release
+
+ -- Subramanya Sastry <ssastry@wikimedia.org>  Thu, 3 Jun 2015 12:25:52 -0500
+
+parsoid (0.5.0allubuntu1) jessie-mediawiki; urgency=medium
+
+   * Release v0.5.0
+
+   * Changes since v0.4.1
+   ** Add v3 API to match RESTBase's API URL formats
+   ** Lots of code cleanup + removal of dead code
+   ** Parsoid code repository reorganized
+   ** Keep data-* attributes at the edge of DOM
+   ** Various performance fixes to handle pathological scenarios
+   ** Added initial support for a Parsoid-native extension registration mechanism
+      (undocumented and breaking changes expected till this is finalized)
+   ** Added initial support for an autoload mechanism for extensions
+   ** Lots of bug fixes
+
+   * See git log between "v0.4.0" and "b0d015f" for the full list of commits
+
+ -- Subramanya Sastry <ssastry@wikimedia.org>  Thu, 2 Jun 2015 16:20:52 -0500
+
 parsoid (0.4.1all) wmf-production; urgency=medium
 
   * Switch release to 'all' architectures
@@ -29,7 +54,7 @@ parsoid (0.1.14) wmf-production; urgency=medium
 
 parsoid (0.1.13) wmf-production; urgency=medium
 
-  * Bump to 0b365d51 
+  * Bump to 0b365d51
 
  -- Gabriel Wicke <gwicke@wikimedia.org>  Mon, 30 Jun 2014 12:26:02 -0700
 
