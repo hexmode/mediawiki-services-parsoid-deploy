@@ -228,11 +228,16 @@ explicitly used, and that only GET requests use the cache.
 * Default: `null`
 * Type: String
 
-A client certificate to pass when accessing the registry.
+A client certificate to pass when accessing the registry.  Values should be in
+PEM format with newlines replaced by the string "\n". For example:
+
+    cert="-----BEGIN CERTIFICATE-----\nXXXX\nXXXX\n-----END CERTIFICATE-----"
+
+It is _not_ the path to a certificate file (and there is no "certfile" option).
 
 ### color
 
-* Default: true on Posix, false on Windows
+* Default: true
 * Type: Boolean or `"always"`
 
 If false, never shows colors.  If `"always"` then always shows colors.
@@ -470,7 +475,12 @@ change.  Only the output from `npm ls --json` is currently valid.
 * Default: `null`
 * Type: String
 
-A client key to pass when accessing the registry.
+A client key to pass when accessing the registry.  Values should be in PEM
+format with newlines replaced by the string "\n". For example:
+
+    key="-----BEGIN PRIVATE KEY-----\nXXXX\nXXXX\n-----END PRIVATE KEY-----"
+
+It is _not_ the path to a key file (and there is no "keyfile" option).
 
 ### link
 
@@ -529,6 +539,14 @@ colored output if it is a TTY.
 * Type: Boolean
 
 Show extended information in `npm ls` and `npm search`.
+
+### maxsockets
+
+* Default: 50
+* Type: Number
+
+The maximum number of connections to use per origin (protocol/host/port
+combination). Passed to the `http` `Agent` used to make the request.
 
 ### message
 
