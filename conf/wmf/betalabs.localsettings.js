@@ -65,7 +65,7 @@ exports.setup = function(parsoidConfig) {
 			name: 'parsoid',
 			streams: [
 				{
-					stream: process.stdout,
+					path: '/srv/log/parsoid/parsoid.log',
 					level: 'debug'
 				},
 				{
