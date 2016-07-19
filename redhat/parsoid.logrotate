@@ -1,0 +1,6 @@
+/var/log/parsoid.log {
+    missingok
+    notifempty
+    sharedscripts
+    endscript
+}
