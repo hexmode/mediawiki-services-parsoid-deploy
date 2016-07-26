@@ -18,10 +18,9 @@ exports.setup = function( parsoidConfig ) {
 	// RESTBase uses 2 minutes timeouts for the first request
 	// and a higher value subsequently.
 	//
-	// Request timeouts are currently disabled in Parsoid.
-	// So, use a 3-min cpu timeout instead.
-	parsoidConfig.timeouts.request = 2*60*1000; // 2 minutes
-	parsoidConfig.timeouts.cpu = 3*60*1000; // 3 minutes
+	// Set a 3 minute timeout so that RESTBase retries have
+	// a chance of succeeding.
+	parsoidConfig.timeouts.request = 3*60*1000; // 3 minutes
 
 	// Direct logs to logstash via bunyan and gelf-stream.
 	var LOGSTASH_HOSTNAME='logstash1003.eqiad.wmnet';
