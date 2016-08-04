@@ -111,7 +111,6 @@ ln -s /etc/parsoid/localsettings.js $RPM_BUILD_ROOT%{_libdir}/node_modules/parso
 %{_libdir}/node_modules/parsoid/*.js
 %{_libdir}/node_modules/parsoid/*.json
 %{_libdir}/node_modules/parsoid/*.yaml
-%{_libdir}/node_modules/parsoid/package.json
 %{_libdir}/node_modules/parsoid/bin
 %{_libdir}/node_modules/parsoid/tools
 %{_libdir}/node_modules/parsoid/guides
