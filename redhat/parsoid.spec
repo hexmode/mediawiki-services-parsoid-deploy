@@ -76,7 +76,7 @@ install -m644 $RPM_SOURCE_DIR/%{topname}/conf/example/localsettings.js \
 ln -s /etc/parsoid/localsettings.js $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid/
 
 # config.yaml
-install -m644 $RPM_SOURCE_DIR/%{topname}/config.example.yaml \
+install -m644 $RPM_SOURCE_DIR/%{topname}/src/config.example.yaml \
         $RPM_BUILD_ROOT%{_sysconfdir}/parsoid/config.example.yaml
 ln -s /etc/parsoid/config.yaml $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid/
 
