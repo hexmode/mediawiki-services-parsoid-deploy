@@ -32,8 +32,8 @@ mkdir -p %{parsoid_inst}
 if [ ! -d $RPM_SOURCE_DIR/%{topname} ]; then
     if [ $isOnline -eq 0 ]; then
         cd $RPM_SOURCE_DIR
-        git clone -b %{git_branch} %{gitrepo} parsoid
-        cd parsoid
+        git clone -b %{git_branch} %{gitrepo}
+        cd %{topname}
         git submodule init
         git submodule update
     else
