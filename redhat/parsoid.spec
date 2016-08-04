@@ -3,7 +3,6 @@
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
 %define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
 %define git_branch master
-%define onlineCheck gerrit.wikmedia.org
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
@@ -12,7 +11,7 @@ Release: 20161017
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
-Source0: https://%{onlineCheck}/r/p/mediawiki/services/parsoid
+Source0: %{gitrepo}
 License: GPLv2
 Group: System Environment/Daemons
 BuildRoot: %buildroot
@@ -26,7 +25,7 @@ Mediawiki parser for the VisualEditor.
 
 %install
 isOnline=0
-ping -c 1 -q %{onelineCheck} 2> /dev/null || isOnline=$?
+git ls-remote %{gitrepo} 2> /dev/null 2>&1 || isOnline=$?
 
 mkdir -p %{parsoid_inst}
 if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
