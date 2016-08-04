@@ -105,9 +105,9 @@ ln -s /etc/parsoid/config.yaml $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid/
 %defattr(-,root,root,-)
 
 %config %{_sysconfdir}/parsoid/localsettings.js
+%config %{_sysconfdir}/parsoid/config.example.yaml
 %config %{_sysconfdir}/logrotate.d/parsoid
 %config %{_sysconfdir}/supervisord.d/parsoid.ini
-%config %{_sysconfdir}/config.example.yaml
 %doc %{_libdir}/node_modules/parsoid/AUTHORS.txt
 %doc %{_libdir}/node_modules/parsoid/COPYING.txt
 %doc %{_libdir}/node_modules/parsoid/HISTORY.md
