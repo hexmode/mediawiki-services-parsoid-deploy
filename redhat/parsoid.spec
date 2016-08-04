@@ -42,9 +42,11 @@ if [ ! -d $RPM_SOURCE_DIR/%{topname} ]; then
     fi
 else
     if [ $isOnline -eq 0 ]; then
-        cd $RPM_SOURCE_DIR/%{topname}/src
+        cd $RPM_SOURCE_DIR/%{topname}
         git checkout %{git_branch}
         git pull
+        git submodule init
+        git submodule update
     else
         echo Not updating git checkout since %{onlineCheck} is not resolvable.
     fi
