@@ -1,6 +1,7 @@
 %define _binary_payload w9.gzdio
 %define logdir /var/log
-%define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
+%define topname mediawiki-services-parsoid-deploy
+%define gitrepo https://github.com/hexmode/%{topname}
 %define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
 %define git_branch master
 
@@ -25,10 +26,10 @@ Mediawiki parser for the VisualEditor.
 
 %install
 isOnline=0
-git ls-remote %{gitrepo} 2> /dev/null 2>&1 || isOnline=$?
+git ls-remote %{gitrepo} > /dev/null 2>&1 || isOnline=$?
 
 mkdir -p %{parsoid_inst}
-if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
+if [ ! -d $RPM_SOURCE_DIR/%{topname} ]; then
     if [ $isOnline -eq 0 ]; then
         cd $RPM_SOURCE_DIR
         git clone -b %{git_branch} %{gitrepo} parsoid
@@ -41,7 +42,7 @@ if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
     fi
 else
     if [ $isOnline -eq 0 ]; then
-        cd $RPM_SOURCE_DIR/parsoid/src
+        cd $RPM_SOURCE_DIR/%{topname}/src
         git checkout %{git_branch}
         git pull
     else
@@ -49,26 +50,26 @@ else
     fi
 fi
 
-cd $RPM_SOURCE_DIR/parsoid
+cd $RPM_SOURCE_DIR/%{topname}
 [ $isOnline -eq 0 ] && npm update
 mkdir -p %{parsoid_inst}
-cp -pr $RPM_SOURCE_DIR/parsoid/src/* %{parsoid_inst}
-cp -pr $RPM_SOURCE_DIR/parsoid/node_modules %{parsoid_inst}
+cp -pr $RPM_SOURCE_DIR/%{topname}/src/* %{parsoid_inst}
+cp -pr $RPM_SOURCE_DIR/%{topname}/node_modules %{parsoid_inst}
 rm -rf %{parsoid_inst}/tests
 
 # Install supervisord stuff
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/supervisord.d
-install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.ini \
+install -m644 $RPM_SOURCE_DIR/%{topname}/redhat/parsoid.ini \
     $RPM_BUILD_ROOT%{_sysconfdir}/supervisord.d
 
 # install log rotation stuff
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
-install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.logrotate \
+install -m644 $RPM_SOURCE_DIR/%{topname}/redhat/parsoid.logrotate \
     $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/parsoid
 
 # localsettings
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/parsoid
-install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
+install -m644 $RPM_SOURCE_DIR/%{topname}/conf/example/localsettings.js \
         $RPM_BUILD_ROOT%{_sysconfdir}/parsoid/localsettings.js
 ### FIXME ugly asterisk in path below
 ln -s /etc/parsoid/localsettings.js $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid/
@@ -88,7 +89,7 @@ ln -s /etc/parsoid/localsettings.js $RPM_BUILD_ROOT%{_libdir}/node_modules/parso
 
 %post
 # Register the httpd service
-/sbin/service supervisor reload
+/sbin/service supervisord reload
 
 %preun
 # noop
