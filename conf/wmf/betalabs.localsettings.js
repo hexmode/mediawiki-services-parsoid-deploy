@@ -59,9 +59,4 @@ exports.setup = function(parsoidConfig) {
 		['warning/empty/tr', 10],
 		[/^warning\/empty\//, 10],
 	];
-
-	// Use txstatsd to send Performance Timing information
-	parsoidConfig.useDefaultPerformanceTimer = true;
-	parsoidConfig.txstatsdHost = 'labmon1001.eqiad.wmnet';
-	parsoidConfig.txstatsdPort = 8125;
 };
