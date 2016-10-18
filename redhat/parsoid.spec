@@ -4,11 +4,12 @@
 %define gitrepo https://github.com/hexmode/mediawiki-services-parsoid-deploy
 %define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
 %define git_branch master
+%define onlineCheck gerrit.wikmedia.org
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
 Version: 0.0.1master
-Release: 20150318
+Release: 20161017
 URL: https://www.mediawiki.org/wiki/Parsoid
 Vendor:  Wikimedia Foundation
 Packager: Mark A. Hershberger <mah@nichework.com>
@@ -17,7 +18,7 @@ License: GPLv2
 Group: System Environment/Daemons
 BuildRoot: %buildroot
 BuildArch: noarch
-Requires: initscripts >= 8.36, nodejs-forever
+Requires: supervisor >= 3.1.3
 Requires(post): chkconfig
 Requires(pre): /usr/sbin/useradd
 
@@ -25,36 +26,47 @@ Requires(pre): /usr/sbin/useradd
 Mediawiki parser for the VisualEditor.
 
 %install
+isOnline=0
+ping -c 1 -q gerrit.wikimedia.org 2> /dev/null || isOnline=$?
+
 mkdir -p %{parsoid_inst}
 if [ ! -d $RPM_SOURCE_DIR/parsoid ]; then
-    cd $RPM_SOURCE_DIR
-    git clone -b %{git_branch} %{gitrepo} parsoid
-    cd parsoid
-    git submodule init
-    git submodule update
+    if [ $isOnline -eq 0 ]; then
+        cd $RPM_SOURCE_DIR
+        git clone -b %{git_branch} %{gitrepo} parsoid
+        cd parsoid
+        git submodule init
+        git submodule update
+    else
+        echo First run while gerrit.wikimedia.org is resolvable so we can clone the git repo.
+        exit 1
+    fi
 else
-    cd $RPM_SOURCE_DIR/parsoid/src
-    git checkout %{git_branch}
-    git pull
+    if [ $isOnline -eq 0 ]; then
+        cd $RPM_SOURCE_DIR/parsoid/src
+        git checkout %{git_branch}
+        git pull
+    else
+        echo Not updating git checkout since gerrit.wikimedia.org is not resolvable.
+    fi
 fi
 
 cd $RPM_SOURCE_DIR/parsoid
-npm update
+[ $isOnline -eq 0 ] && npm update
 mkdir -p %{parsoid_inst}
 cp -pr $RPM_SOURCE_DIR/parsoid/src/* %{parsoid_inst}
 rm -rf %{parsoid_inst}/tests
 cp -pr $RPM_SOURCE_DIR/parsoid/node_modules %{parsoid_inst}
 
-# install SYSV init stuff
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/parsoid
-mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
-install -m755 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.init \
-    $RPM_BUILD_ROOT/etc/rc.d/init.d/parsoid
+# Install supervisord stuff
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/supervisord.d
+install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.ini \
+    $RPM_BUILD_ROOT%{_sysconfdir}/supervisord.d
 
 # install log rotation stuff
-mkdir -p $RPM_BUILD_ROOT/etc/logrotate.d
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
 install -m644 $RPM_SOURCE_DIR/parsoid/redhat/parsoid.logrotate \
-    $RPM_BUILD_ROOT/etc/logrotate.d/parsoid
+    $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/parsoid
 
 # localsettings
 install -m644 $RPM_SOURCE_DIR/parsoid/conf/example/localsettings.js \
@@ -83,7 +95,7 @@ fi
 
 %post
 # Register the httpd service
-/sbin/chkconfig --add parsoid
+/sbin/service supervisor reload
 
 %preun
 if [ $1 = 0 ]; then
@@ -116,9 +128,13 @@ fi
 
 
 %changelog
+* Mon Oct 17 2016 Mark A. Hershberger  <mah@nichework.com>
+
+    Use supervisor to run parsoid.
+
 * Tue Sep 16 2014 Mark A. Hershberger  <mah@nichework.com>
 
-    Fix status call so pid file isn't deleted un-necessarily.
+    Fix status call so pid file is not deleted un-necessarily.
 
 * Thu Aug 28 2014 Mark A. Hershberger <mah@nichework.com>
 
