@@ -71,7 +71,7 @@ start() {
         cd $forever_dir
         daemon --user=$user \
             "$forever start -s --minUptime $time --spinSleepTime $time -p $forever_dir \
-            --pidFile $pidfile -l $logfile -a $SOURCE_DIR/$SOURCE_FILE > /dev/null"
+            --pidFile $pidfile -l $logfile -a $SOURCE_DIR/$SOURCE_FILE > /dev/null 2>&1"
         RETVAL=$?
 
         if [ "$RETVAL" == "0" ]; then
@@ -140,4 +140,10 @@ case "$1" in
         exit 1
         ;;
 esac
+
+if [ "$RETVAL" != "0" -a -f $pidfile ]; then
+    echo Error on startup, eliminating pidfile.
+    rm $pidfile
+fi
+
 exit $RETVAL
