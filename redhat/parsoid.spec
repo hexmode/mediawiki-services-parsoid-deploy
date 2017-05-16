@@ -3,7 +3,7 @@
 %define topname mediawiki-services-parsoid-deploy
 %define gitrepo https://github.com/hexmode/%{topname}
 %define parsoid_inst $RPM_BUILD_ROOT%{_libdir}/node_modules/parsoid
-%define git_branch v0.4.1
+%define git_branch master
 
 Summary: Mediawiki parser for the VisualEditor.
 Name: parsoid
