@@ -1,0 +1,9 @@
+checks:
+  depool:
+    type: command
+    stage: promote
+    command: depool service=parsoid
+  repool:
+    type: command
+    stage: restart_service
+    command: pool service=parsoid

@@ -2,39 +2,40 @@
 exports.setup = function(parsoidConfig) {
 	parsoidConfig.loadWMF = false;
 
-	parsoidConfig.setMwApi({ prefix: 'aawiki', uri: 'http://aa.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'arwiki', uri: 'http://ar.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'cawiki', uri: 'http://ca.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'commonswiki', uri: 'http://commons.wikimedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'dewiki', uri: 'http://de.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'en_rtlwiki', uri: 'http://en-rtl.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwiki', uri: 'http://en.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwikibooks', uri: 'http://en.wikibooks.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwikinews', uri: 'http://en.wikinews.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwikiquote', uri: 'http://en.wikiquote.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwikisource', uri: 'http://en.wikisource.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwikiversity', uri: 'http://en.wikiversity.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwikivoyage', uri: 'http://en.wikivoyage.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'enwiktionary', uri: 'http://en.wikitionary.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'eowiki', uri: 'http://eo.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'eswiki', uri: 'http://es.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'fawiki', uri: 'http://fa.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'hewiki', uri: 'http://he.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'hiwiki', uri: 'http://hi.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'jawiki', uri: 'http://ja.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'kowiki', uri: 'http://ko.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'labs', uri: 'http://deployment.wikimedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'loginwiki', uri: 'http://login.wikimedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'metawiki', uri: 'http://meta.wikimedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'nlwiki', uri: 'http://nl.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'ruwiki', uri: 'http://ru.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'simplewiki', uri: 'http://simple.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'sqwiki', uri: 'http://sq.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'testwiki', uri: 'http://test.wikimedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'ukwiki', uri: 'http://uk.wikipedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'wikidatawiki', uri: 'http://wikidata.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'zerowiki', uri: 'http://zero.wikimedia.beta.wmflabs.org/w/api.php' });
-	parsoidConfig.setMwApi({ prefix: 'zhwiki', uri: 'http://zh.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'aawiki', uri: 'https://aa.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'arwiki', uri: 'https://ar.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'cawiki', uri: 'https://ca.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'commonswiki', uri: 'https://commons.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'dewiki', uri: 'https://de.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'en_rtlwiki', uri: 'https://en-rtl.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwiki', uri: 'https://en.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikibooks', uri: 'https://en.wikibooks.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikinews', uri: 'https://en.wikinews.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikiquote', uri: 'https://en.wikiquote.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikisource', uri: 'https://en.wikisource.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikiversity', uri: 'https://en.wikiversity.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwikivoyage', uri: 'https://en.wikivoyage.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'enwiktionary', uri: 'https://en.wikitionary.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'eowiki', uri: 'https://eo.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'eswiki', uri: 'https://es.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'fawiki', uri: 'https://fa.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'hewiki', uri: 'https://he.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'hiwiki', uri: 'https://hi.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'jawiki', uri: 'https://ja.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'kowiki', uri: 'https://ko.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'labs', uri: 'https://deployment.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'loginwiki', uri: 'https://login.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'metawiki', uri: 'https://meta.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'nlwiki', uri: 'https://nl.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'ruwiki', uri: 'https://ru.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'simplewiki', uri: 'https://simple.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'sqwiki', uri: 'https://sq.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'testwiki', uri: 'https://test.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'ukwiki', uri: 'https://uk.wikipedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'wikidatawiki', uri: 'https://wikidata.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'zerowiki', uri: 'https://zero.wikimedia.beta.wmflabs.org/w/api.php' });
+	parsoidConfig.setMwApi({ prefix: 'zhwiki', uri: 'https://zh.wikipedia.beta.wmflabs.org/w/api.php' });
+
 	// the production enwiki: a work-around to be able to use the labs parsoid instance from RESTBase
 	parsoidConfig.setMwApi({ prefix: 'enwikiprod', uri: 'https://en.wikipedia.org/w/api.php' });
 
@@ -47,36 +48,6 @@ exports.setup = function(parsoidConfig) {
 	// Use selective serialization (default false)
 	parsoidConfig.useSelser = true;
 
-	// allow cross-domain requests to the API (default disallowed)
-	//parsoidConfig.allowCORS = '*';
-
-	// parsoidConfig.apiProxyURI = 'http://en.wikipedia.org';
-
-	// Direct logs to logstash via bunyan and gelf-stream.
-	var LOGSTASH_HOSTNAME='deployment-logstash2.deployment-prep.eqiad.wmflabs';
-	var LOGSTASH_PORT=12201;
-	parsoidConfig.loggerBackend = {
-		name: ':Logger.bunyan/BunyanLogger',
-		options: {
-			// No need to do any log suppression here -- we are doing that filtering
-			// in ParsoidLogger already. So, we will enable most permissive level here
-			// to replicate all log entries to both streams. If we want to redirect
-			// different levels to different targets, we can use different levels at that time.
-			name: 'parsoid',
-			streams: [
-				{
-					path: '/srv/log/parsoid/parsoid.log',
-					level: 'debug'
-				},
-				{
-					type: 'raw',
-					stream: require('gelf-stream').forBunyan(LOGSTASH_HOSTNAME, LOGSTASH_PORT),
-					level: 'debug'
-				}
-			]
-		}
-	};
-
 	// Sample verbose logs
 	parsoidConfig.loggerSampling = [
 		['warning/dsr/inconsistent', 5],
@@ -84,9 +55,4 @@ exports.setup = function(parsoidConfig) {
 		['warning/empty/tr', 10],
 		[/^warning\/empty\//, 10],
 	];
-
-	// Use txstatsd to send Performance Timing information
-	parsoidConfig.useDefaultPerformanceTimer = true;
-	parsoidConfig.txstatsdHost = 'labmon1001.eqiad.wmnet';
-	parsoidConfig.txstatsdPort = 8125;
 };

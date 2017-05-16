@@ -18,35 +18,15 @@ exports.setup = function( parsoidConfig ) {
 	// RESTBase uses 2 minutes timeouts for the first request
 	// and a higher value subsequently.
 	//
-	// Request timeouts are currently disabled in Parsoid.
-	// So, use a 3-min cpu timeout instead.
-	parsoidConfig.timeouts.request = 2*60*1000; // 2 minutes
-	parsoidConfig.timeouts.cpu = 3*60*1000; // 3 minutes
+	// Set a 3 minute timeout so that RESTBase retries have
+	// a chance of succeeding.
+	parsoidConfig.timeouts.request = 3*60*1000; // 3 minutes
 
-	// Direct logs to logstash via bunyan and gelf-stream.
-	var LOGSTASH_HOSTNAME='logstash1003.eqiad.wmnet';
-	var LOGSTASH_PORT=12201;
-	parsoidConfig.loggerBackend = {
-		name: ':Logger.bunyan/BunyanLogger',
-		options: {
-			// No need to do any log suppression here -- we are doing that filtering
-			// in ParsoidLogger already. So, we will enable most permissive level here
-			// to replicate all log entries to both streams. If we want to redirect
-			// different levels to different targets, we can use different levels at that time.
-			name: 'parsoid',
-			streams: [
-				{
-					path: '/srv/log/parsoid/parsoid.log',
-					level: 'debug'
-				},
-				{
-					type: 'raw',
-					stream: require('gelf-stream').forBunyan(LOGSTASH_HOSTNAME, LOGSTASH_PORT),
-					level: 'warn'
-				}
-			]
-		}
-	};
+	// Bump default resource limits.
+	// With node v4, we have a wider margin.
+	parsoidConfig.limits.wt2html.maxWikitextSize = 1250000;
+	parsoidConfig.limits.wt2html.maxListItems = 50000;
+	parsoidConfig.limits.wt2html.maxTableCells = 50000;
 
 	// Sample these verbose logs to prevent overwhelm
 	// 1% and 2% for empty/tr and empty/li is based on
@@ -57,9 +37,4 @@ exports.setup = function( parsoidConfig ) {
 		['warning/empty/tr', 0],
 		[/^warning\/empty\//, 5],
 	];
-
-	// Use txstatsd for Performance Timing information
-	parsoidConfig.useDefaultPerformanceTimer = true;
-	parsoidConfig.txstatsdHost = 'statsd.eqiad.wmnet';
-	parsoidConfig.txstatsdPort = 8125;
 };
